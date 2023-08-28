@@ -7,7 +7,7 @@
                 :key="destination.id"
                 :to="destination.slug"
             >
-                <h2>{{ destination.name }}</h2>
+                <h2>{{ destination.id }}</h2>
                 <img :src="`/images/${destination.image}`" :alt="destination.name" >
        </router-link>
         </div>
@@ -16,7 +16,24 @@
 
 <script setup lang="ts">
     import sourceData from '../data.json'
-    const destinations = sourceData.destinations;
+
+    interface Experience {
+    name: string;
+    slug: string;
+    image: string;
+    description: string;
+    }
+
+    interface Destination {
+    name: string;
+    slug: string;
+    image: string;
+    id: number;
+    description: string;
+    experiences: Experience[];
+    }
+
+    const destinations: Destination[] = sourceData.destinations;
 </script>
 
 <style scoped>
