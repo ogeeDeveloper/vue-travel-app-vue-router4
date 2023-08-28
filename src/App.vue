@@ -1,6 +1,10 @@
 <script setup lang="ts">
+
 </script>
 
 <template>
-  <h1>Test</h1>
+  <router-link to="/">Home</router-link> |
+  <router-link to="/about">About</router-link>
+  <br />
+  <router-view />
 </template>
