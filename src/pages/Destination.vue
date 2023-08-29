@@ -8,15 +8,20 @@
 </template>
 
 <script setup lang="ts">
-    import { computed, ref } from 'vue';
+    import { computed, ref, watch } from 'vue';
     import sourceData from '@/data.json';
     import { useRoute } from 'vue-router';
 
     const route = useRoute();
-    const id = ref(route.params.id);
+    const id = ref<number>(parseInt(route.params.id as string));
 
+    // Watch for changes to the route's params.id and update the id ref
+    watch(() => route.params.id, (newId) => {
+        id.value = parseInt(newId as string);
+    });
+    
     const getDestinationID = computed(() => {
-        return parseInt(id.value);
+        return id.value;
     });
 
     const getDestination  = computed(() => {
